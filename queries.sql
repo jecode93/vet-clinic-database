@@ -28,6 +28,8 @@ SELECT species FROM animals;
 -- Rollback from unspecified to species
 ROLLBACK;
 
+-- verify that change was undone
+SELECT species from animals;
 
 -- REQUEST 2: 
 --Inside a transaction:
