@@ -15,10 +15,15 @@ SELECT name from animals WHERE weight_kg = 10.4 AND weight_kg = 17.3 OR weight_k
 --REQUEST 1: 
 --Inside a transaction update the animals table by setting the species column to unspecified. Verify that change was made. Then roll back the change and verify that the species columns went back to the state before the transaction.
 
+-- start transaction
 BEGIN;
 
+-- UPDATE
 UPDATE animals
-SET species = 'unspecified';
+SET species = 'unspecified'; 
+
+-- verify that change was made
+SELECT species FROM animals;
 
 -- Rollback from unspecified to species
 ROLLBACK;
@@ -37,7 +42,14 @@ BEGIN;
 UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon%';
 UPDATE animals SET species = 'pokemon' WHERE species IS NULL;
 
+-- verify that changes were made
+SELECT species FROM animals;
+
+-- commit transaction
 COMMIT;
+
+-- verify that change persists after commit
+SELECT species FROM animals;
 
 
 -- REQUEST 3 & 4:
