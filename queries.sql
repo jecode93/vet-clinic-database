@@ -174,3 +174,148 @@ WHERE count = (SELECT MAX(count) FROM (
   ON animals.owner_id = owners.id
   GROUP BY full_name
 ) AS max_count);
+
+
+
+-- Vet clinic database: add "join table" for visits
+
+-- Who was the last animal seen by William Tatcher?
+SELECT animals.name AS last_animal, date_of_visit AS last_visit, vets.name AS vet_name
+FROM visits
+INNER JOIN animals
+ON animals.id = visits.animals_id
+INNER JOIN vets
+ON vet_id = vets.id
+WHERE date_of_visit = (
+  SELECT MAX(date_of_visit) 
+  FROM visits 
+  WHERE vet_id = (SELECT id FROM vets WHERE name = 'William Tatcher')
+);
+
+-- How many different animals did Stephanie Mendez see?
+SELECT vets.name, COUNT(*) AS animal_see
+FROM animals
+INNER JOIN visits
+ON animals.id = visits.animals_id
+INNER JOIN vets
+ON vet_id = vets.id
+WHERE vets.name = 'Stephanie Mendez'
+GROUP BY vets.name;
+
+-- List all vets and their specialties, including vets with no specialties.
+SELECT vets.id AS vet_id, vets.name AS vet_name, species.name AS species_name
+FROM vets
+LEFT JOIN specializations
+ON vets.id = specializations.vet_id
+LEFT JOIN species
+ON specializations.species_id = species.id;
+
+-- List all animals that visited Stephanie Mendez between April 1st and August 30th, 2020.
+SELECT animals.name AS animal, vets.name AS vet, date_of_visit
+FROM animals
+INNER JOIN visits
+ON animals.id = visits.animals_id
+INNER JOIN vets
+ON vets.id = visits.vet_id
+WHERE vets.name = 'Stephanie Mendez' AND date_of_visit BETWEEN '2020-04-01' AND '2020-08-30';
+
+
+-- What animal has the most visits to vets?
+SELECT animals.name, animals_id, visits_count
+FROM animals
+INNER JOIN (
+  SELECT animals_id, COUNT(animals_id) AS visits_count
+  FROM visits
+  GROUP BY animals_id
+) AS most_visit
+ON animals.id = animals_id
+WHERE visits_count = (SELECT MAX(visits_count) FROM (
+  SELECT animals_id, COUNT(animals_id) AS visits_count
+  FROM visits
+  GROUP BY animals_id
+) AS visits_count
+);
+
+
+-- Who was Maisy Smith's first visit?
+SELECT animals_id, animals.name AS animal_name, vet_id, vets.name AS vet_name, date_of_visit AS latest_visit
+FROM visits
+INNER JOIN animals
+ON animals.id = animals_id
+INNER JOIN vets
+ON vets.id = vet_id
+WHERE date_of_visit = (
+  SELECT MIN(date_of_visit) AS latest_visit
+  FROM visits
+  WHERE vet_id = (SELECT id FROM vets WHERE name = 'Maisy Smith')
+);
+
+
+-- Details for most recent visit: animal information, vet information, and date of visit.
+SELECT animals_id, animals.name AS animal, animals.date_of_birth, animals.weight_kg, animals.escape_attemps, animals.neutered, species.name AS species, owners.full_name as owner, vet_id, vets.name AS vet_name, date_of_visit
+FROM visits
+INNER JOIN animals
+ON animals.id = animals_id
+INNER JOIN vets
+ON vets.id = vet_id
+INNER JOIN owners
+ON owners.id = animals.owner_id
+INNER JOIN species
+ON species.id = animals.species_id
+WHERE date_of_visit = (
+  SELECT MAX(date_of_visit) AS latest_visit
+  FROM visits
+);
+
+
+-- How many visits were with a vet that did not specialize in that animal's species?
+SELECT COUNT (*) FROM (
+  SELECT animals_id, vet_id, animals.species_id AS species
+  FROM visits
+  INNER JOIN animals
+  ON animals.id = visits.animals_id
+  WHERE (animals.species_id != (
+    SELECT specializations.species_id
+    FROM vets
+    LEFT JOIN specializations
+    ON vets.id = specializations.vet_id
+    WHERE specializations.vet_id = visits.vet_id AND specializations.vet_id != 3
+  )) OR vet_id = 2
+) as most;
+
+
+-- What specialty should Maisy Smith consider getting? Look for the species she gets the most.
+SELECT species_id, species.name AS species_name, sum AS species_visits_count
+FROM species
+INNER JOIN (
+  SELECT species_id, SUM(visits_count) AS sum
+  FROM (
+    SELECT animals.species_id, visits_count
+    FROM animals
+    INNER JOIN (
+      SELECT animals_id, COUNT(animals_id) AS visits_count
+      FROM visits
+      WHERE vet_id = (SELECT id FROM vets WHERE name = 'Maisy Smith')
+      GROUP BY animals_id
+    ) AS count
+    ON animals.id = animals_id
+  ) AS sum
+  GROUP BY species_id
+) AS sum_all
+ON species.id = species_id
+WHERE sum = (SELECT MAX(sum) FROM (
+  SELECT species_id, SUM(visits_count) AS sum
+  FROM (
+    SELECT animals.species_id, visits_count
+    FROM animals
+    INNER JOIN (
+      SELECT animals_id, COUNT(animals_id) AS visits_count
+      FROM visits
+      WHERE vet_id = (SELECT id FROM vets WHERE name = 'Maisy Smith')
+      GROUP BY animals_id
+    ) AS count_all
+    ON animals.id = animals_id
+  ) AS max
+  GROUP BY species_id
+) AS max_all
+);
