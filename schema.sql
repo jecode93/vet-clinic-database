@@ -56,3 +56,28 @@ ALTER TABLE animals
 ADD CONSTRAINT fk_owner
 FOREIGN KEY (owner_id)
 REFERENCES owners(id);
+
+
+
+-- Vet clinic database: add "join table" for visits
+
+CREATE TABLE vets (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(250) NOT NULL,
+    age INT NOT NULL,
+    date_of_graduation DATE NOT NULL,
+    PRIMARY KEY(id)
+);
+
+-- Species and Vet specialization
+CREATE TABLE specializations (
+    species_id INT,
+    vet_id INT
+);
+
+-- Animals and Vets visit
+CREATE TABLE visits (
+    animals_id INT,
+    vet_id INT,
+    date_of_visit DATE NOT NULL
+);
