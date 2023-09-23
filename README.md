@@ -1,4 +1,4 @@
-# Curriculum databases project
+# Curriculum Databases project using PostgreSQL
 
 ## Getting Started
 
