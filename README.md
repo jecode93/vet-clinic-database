@@ -139,6 +139,11 @@ To run tests, run the following command:
 - Twitter: [@jecode93](https://twitter.com/jecode93)
 - LinkedIn: [jean-emmanuel-cadet](https://www.linkedin.com/in/jean-emmanuel-cadet/)
 
+ 👤 **Suleiman Gacheru**
+
+- GitHub: [@hetrox8](https://github.com/hetrox8)
+- Twitter: [@suleimangacheru](https://twitter.com/suleimangacheru)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -175,7 +180,7 @@ If you like this project...
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank...
+I would like to thank Microverse for giving me this wonderful opportunity to work on this project 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
