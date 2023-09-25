@@ -142,7 +142,7 @@ To run tests, run the following command:
  👤 **Suleiman Gacheru**
 
 - GitHub: [@hetrox8](https://github.com/hetrox8)
-- Twitter: [@suleimangacheru](https://SuleimanGacheru/suleimangacheru)
+- Twitter: [@suleimangacheru](https://twitter.com/suleimangacheru)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
