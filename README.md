@@ -139,6 +139,11 @@ To run tests, run the following command:
 - Twitter: [@jecode93](https://twitter.com/jecode93)
 - LinkedIn: [jean-emmanuel-cadet](https://www.linkedin.com/in/jean-emmanuel-cadet/)
 
+ 👤 **Suleiman Gacheru**
+
+- GitHub: [@hetrox8](https://github.com/hetrox8)
+- Twitter: [@suleimangacheru](https://SuleimanGacheru/suleimangacheru)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
