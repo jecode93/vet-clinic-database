@@ -61,7 +61,7 @@ After you're finished please remove all the comments and instructions!
 
 > In this project, I use a relational database to create the initial data structure for a vet clinic. I create a table to store animals's information, insert some data into it, and query it.
 
-**[Vet clinic database]** is a relational database create to store animals's information, insert some data into it, and query it.
+**Vet clinic database** is a relational database create to store animals's information, insert some data into it, and query it.
 
 ## 🛠 Built With <a name="built-with"></a>
 
