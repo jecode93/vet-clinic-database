@@ -10,28 +10,6 @@ This repository includes files with plain SQL that can be used to recreate a dat
 
 <a name="readme-top"></a>
 
-<!--
-HOW TO USE:
-This is an example of how you may give instructions on setting up your project locally.
-
-Modify this file to match your project and remove sections that don't apply.
-
-REQUIRED SECTIONS:
-- Table of Contents
-- About the Project
-  - Built With
-  - Live Demo
-- Getting Started
-- Authors
-- Future Features
-- Contributing
-- Show your support
-- Acknowledgements
-- License
-
-After you're finished please remove all the comments and instructions!
--->
-
 
 <!-- TABLE OF CONTENTS -->
 
@@ -59,7 +37,7 @@ After you're finished please remove all the comments and instructions!
 
 # 📖 Vet clinic database <a name="about-project"></a>
 
-> In this project, I use a relational database to create the initial data structure for a vet clinic. I create a table to store animals's information, insert some data into it, and query it.
+> In this project, I use a relational database to create the initial data structure for a vet clinic. I create a table to store animals' information, insert some data, and query it.
 
 **Vet clinic database** is a relational database create to store animals's information, insert some data into it, and query it.
 
@@ -156,9 +134,6 @@ To run tests, run the following command:
 - [ ] **[Add clinic employee table]**
 - [ ] **[Add visits table]**
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTRIBUTING -->
 
 ## 🤝 Contributing <a name="contributing"></a>
@@ -183,16 +158,8 @@ If you like this project...
 
 I would like to thank Microverse for giving me this wonderful opportunity to work on this project 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- FAQ (optional) -->
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- LICENSE -->
 
 ## 📝 License <a name="license"></a>
 
 This project is [MIT](./LICENSE) licensed.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
